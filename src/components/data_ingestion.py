@@ -9,12 +9,15 @@ from dataclasses import dataclass
 
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
+from src.components.model_trainer import ModelTRainerconfig
+from src.components.model_trainer import ModelTrainer
+
 
 @dataclass
 class DataIngestionConfig:
-    train_data_Path: str =os.path.join("artifact","train.csv")
-    test_data_Path: str =os.path.join("artifact","test.csv")
-    raw_data_Path: str =os.path.join("artifact","raw.csv")
+    train_data_Path: str =os.path.join("artifacts","train.csv")
+    test_data_Path: str =os.path.join("artifacts","test.csv")
+    raw_data_Path: str =os.path.join("artifacts","raw.csv")
 
 class DataIngestion:
     def __init__(self):
@@ -51,4 +54,9 @@ if __name__ == "__main__":
     logging.info("Data ingestion completed successfully")
 
     data_transformation = DataTransformation()
-    data_transformation.initiate_data_transformation(train_data_path, test_data_path)
+    train_array, test_array = data_transformation.initiate_data_transformation(
+        train_path=train_data_path, test_path=test_data_path)
+    
+    model_trainer = ModelTrainer()
+    print(model_trainer.initiate_model_trainer(train_array, test_array))
+

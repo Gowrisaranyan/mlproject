@@ -135,7 +135,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.artifact
+artifacts/
 .env
 .envrc
 .venv
@@ -144,6 +144,11 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+#catboost_info
+#   CatBoost creates a catboost_info directory in the current working directory, which is not
+#   recommended to be included in version control.
+catboost_info/
 
 # Spyder project settings
 .spyderproject
